@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 import { Request, Response } from 'express';
+import WidgetsController from '../controllers/widgetsController';
 
 router.get('/', (req: Request, res: Response) => {
     res.render('form', { title: 'Registration Form' });
 });
+
+router.get('/widgets', WidgetsController.getAllWidgets);
 
 router.post('/', 
     [
@@ -30,3 +33,5 @@ router.post('/',
         }
     res.render('form', { title: 'Registration Form'})
 });
+
+module.exports = router;
