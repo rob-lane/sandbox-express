@@ -1,28 +1,37 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 const path = require('path');
-import { Projection } from '../models/projection';
+import { error } from 'console';
+import { PrismaClient } from '../generated/prisma/client';
 import { parse } from 'csv-parse';
 import { delimiter } from 'path';
 import { off } from 'process';
 
 const projectionsData = path.join(__dirname, '..', 'dummy', 'projections.csv');
-const projections : Array<Projection> = [];
+const prisma = new PrismaClient();
 
 const parseCsv = parse({
     delimiter   : ',',
     columns     : true,
-})
-
-fs.createReadStream(projectionsData)
-    .pipe(parseCsv)
-    .on('data', (row) => {
-        projections.push(row);
-    })
-    .on('end', () => {
-        console.log('CSV file successfully processed');
 });
 
-for (const projection of projections) { 
+export function loadProjections(csvfile: string) { 
+    const fileStream = fs.createReadStream(csvfile);
+    fileStream.pipe(parseCsv);
 
+    parseCsv.on('data', (row) => {
+        prisma.commodity.create({
+            data: { 
+                attrib: row.Attrib,
+                name: row.Commodity,
+                type: row.CommodityType,
+                units: row.Units,
+                yearType: row.YearType,
+                year: row.Year,
+                value: row.Value
+            }
+        })
+    });
+
+    parseCsv.end();
 }

@@ -123,8 +123,9 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.CommodityScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  attribute: 'attribute',
+  attrib: 'attrib',
   name: 'name',
+  units: 'units',
   type: 'type',
   yearType: 'yearType',
   year: 'year',

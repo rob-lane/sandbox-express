@@ -896,8 +896,9 @@ export namespace Prisma {
   export type CommodityMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    attribute: string | null
+    attrib: string | null
     name: string | null
+    units: string | null
     type: string | null
     yearType: string | null
     year: number | null
@@ -907,8 +908,9 @@ export namespace Prisma {
   export type CommodityMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    attribute: string | null
+    attrib: string | null
     name: string | null
+    units: string | null
     type: string | null
     yearType: string | null
     year: number | null
@@ -918,8 +920,9 @@ export namespace Prisma {
   export type CommodityCountAggregateOutputType = {
     id: number
     createdAt: number
-    attribute: number
+    attrib: number
     name: number
+    units: number
     type: number
     yearType: number
     year: number
@@ -943,8 +946,9 @@ export namespace Prisma {
   export type CommodityMinAggregateInputType = {
     id?: true
     createdAt?: true
-    attribute?: true
+    attrib?: true
     name?: true
+    units?: true
     type?: true
     yearType?: true
     year?: true
@@ -954,8 +958,9 @@ export namespace Prisma {
   export type CommodityMaxAggregateInputType = {
     id?: true
     createdAt?: true
-    attribute?: true
+    attrib?: true
     name?: true
+    units?: true
     type?: true
     yearType?: true
     year?: true
@@ -965,8 +970,9 @@ export namespace Prisma {
   export type CommodityCountAggregateInputType = {
     id?: true
     createdAt?: true
-    attribute?: true
+    attrib?: true
     name?: true
+    units?: true
     type?: true
     yearType?: true
     year?: true
@@ -1063,8 +1069,9 @@ export namespace Prisma {
   export type CommodityGroupByOutputType = {
     id: number
     createdAt: Date
-    attribute: string
+    attrib: string
     name: string
+    units: string
     type: string
     yearType: string
     year: number
@@ -1093,8 +1100,9 @@ export namespace Prisma {
   export type CommoditySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
-    attribute?: boolean
+    attrib?: boolean
     name?: boolean
+    units?: boolean
     type?: boolean
     yearType?: boolean
     year?: boolean
@@ -1104,8 +1112,9 @@ export namespace Prisma {
   export type CommoditySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
-    attribute?: boolean
+    attrib?: boolean
     name?: boolean
+    units?: boolean
     type?: boolean
     yearType?: boolean
     year?: boolean
@@ -1115,8 +1124,9 @@ export namespace Prisma {
   export type CommoditySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
-    attribute?: boolean
+    attrib?: boolean
     name?: boolean
+    units?: boolean
     type?: boolean
     yearType?: boolean
     year?: boolean
@@ -1126,15 +1136,16 @@ export namespace Prisma {
   export type CommoditySelectScalar = {
     id?: boolean
     createdAt?: boolean
-    attribute?: boolean
+    attrib?: boolean
     name?: boolean
+    units?: boolean
     type?: boolean
     yearType?: boolean
     year?: boolean
     value?: boolean
   }
 
-  export type CommodityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "attribute" | "name" | "type" | "yearType" | "year" | "value", ExtArgs["result"]["commodity"]>
+  export type CommodityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "attrib" | "name" | "units" | "type" | "yearType" | "year" | "value", ExtArgs["result"]["commodity"]>
 
   export type $CommodityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Commodity"
@@ -1142,8 +1153,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
-      attribute: string
+      attrib: string
       name: string
+      units: string
       type: string
       yearType: string
       year: number
@@ -1573,8 +1585,9 @@ export namespace Prisma {
   interface CommodityFieldRefs {
     readonly id: FieldRef<"Commodity", 'Int'>
     readonly createdAt: FieldRef<"Commodity", 'DateTime'>
-    readonly attribute: FieldRef<"Commodity", 'String'>
+    readonly attrib: FieldRef<"Commodity", 'String'>
     readonly name: FieldRef<"Commodity", 'String'>
+    readonly units: FieldRef<"Commodity", 'String'>
     readonly type: FieldRef<"Commodity", 'String'>
     readonly yearType: FieldRef<"Commodity", 'String'>
     readonly year: FieldRef<"Commodity", 'Int'>
@@ -1962,8 +1975,9 @@ export namespace Prisma {
   export const CommodityScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
-    attribute: 'attribute',
+    attrib: 'attrib',
     name: 'name',
+    units: 'units',
     type: 'type',
     yearType: 'yearType',
     year: 'year',
@@ -2059,8 +2073,9 @@ export namespace Prisma {
     NOT?: CommodityWhereInput | CommodityWhereInput[]
     id?: IntFilter<"Commodity"> | number
     createdAt?: DateTimeFilter<"Commodity"> | Date | string
-    attribute?: StringFilter<"Commodity"> | string
+    attrib?: StringFilter<"Commodity"> | string
     name?: StringFilter<"Commodity"> | string
+    units?: StringFilter<"Commodity"> | string
     type?: StringFilter<"Commodity"> | string
     yearType?: StringFilter<"Commodity"> | string
     year?: IntFilter<"Commodity"> | number
@@ -2070,8 +2085,9 @@ export namespace Prisma {
   export type CommodityOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    attribute?: SortOrder
+    attrib?: SortOrder
     name?: SortOrder
+    units?: SortOrder
     type?: SortOrder
     yearType?: SortOrder
     year?: SortOrder
@@ -2084,8 +2100,9 @@ export namespace Prisma {
     OR?: CommodityWhereInput[]
     NOT?: CommodityWhereInput | CommodityWhereInput[]
     createdAt?: DateTimeFilter<"Commodity"> | Date | string
-    attribute?: StringFilter<"Commodity"> | string
+    attrib?: StringFilter<"Commodity"> | string
     name?: StringFilter<"Commodity"> | string
+    units?: StringFilter<"Commodity"> | string
     type?: StringFilter<"Commodity"> | string
     yearType?: StringFilter<"Commodity"> | string
     year?: IntFilter<"Commodity"> | number
@@ -2095,8 +2112,9 @@ export namespace Prisma {
   export type CommodityOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    attribute?: SortOrder
+    attrib?: SortOrder
     name?: SortOrder
+    units?: SortOrder
     type?: SortOrder
     yearType?: SortOrder
     year?: SortOrder
@@ -2114,8 +2132,9 @@ export namespace Prisma {
     NOT?: CommodityScalarWhereWithAggregatesInput | CommodityScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Commodity"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Commodity"> | Date | string
-    attribute?: StringWithAggregatesFilter<"Commodity"> | string
+    attrib?: StringWithAggregatesFilter<"Commodity"> | string
     name?: StringWithAggregatesFilter<"Commodity"> | string
+    units?: StringWithAggregatesFilter<"Commodity"> | string
     type?: StringWithAggregatesFilter<"Commodity"> | string
     yearType?: StringWithAggregatesFilter<"Commodity"> | string
     year?: IntWithAggregatesFilter<"Commodity"> | number
@@ -2124,8 +2143,9 @@ export namespace Prisma {
 
   export type CommodityCreateInput = {
     createdAt?: Date | string
-    attribute: string
+    attrib: string
     name: string
+    units: string
     type: string
     yearType: string
     year: number
@@ -2135,8 +2155,9 @@ export namespace Prisma {
   export type CommodityUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
-    attribute: string
+    attrib: string
     name: string
+    units: string
     type: string
     yearType: string
     year: number
@@ -2145,8 +2166,9 @@ export namespace Prisma {
 
   export type CommodityUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attribute?: StringFieldUpdateOperationsInput | string
+    attrib?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    units?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     yearType?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
@@ -2156,8 +2178,9 @@ export namespace Prisma {
   export type CommodityUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attribute?: StringFieldUpdateOperationsInput | string
+    attrib?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    units?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     yearType?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
@@ -2167,8 +2190,9 @@ export namespace Prisma {
   export type CommodityCreateManyInput = {
     id?: number
     createdAt?: Date | string
-    attribute: string
+    attrib: string
     name: string
+    units: string
     type: string
     yearType: string
     year: number
@@ -2177,8 +2201,9 @@ export namespace Prisma {
 
   export type CommodityUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attribute?: StringFieldUpdateOperationsInput | string
+    attrib?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    units?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     yearType?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
@@ -2188,8 +2213,9 @@ export namespace Prisma {
   export type CommodityUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attribute?: StringFieldUpdateOperationsInput | string
+    attrib?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    units?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     yearType?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
@@ -2236,8 +2262,9 @@ export namespace Prisma {
   export type CommodityCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    attribute?: SortOrder
+    attrib?: SortOrder
     name?: SortOrder
+    units?: SortOrder
     type?: SortOrder
     yearType?: SortOrder
     year?: SortOrder
@@ -2253,8 +2280,9 @@ export namespace Prisma {
   export type CommodityMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    attribute?: SortOrder
+    attrib?: SortOrder
     name?: SortOrder
+    units?: SortOrder
     type?: SortOrder
     yearType?: SortOrder
     year?: SortOrder
@@ -2264,8 +2292,9 @@ export namespace Prisma {
   export type CommodityMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    attribute?: SortOrder
+    attrib?: SortOrder
     name?: SortOrder
+    units?: SortOrder
     type?: SortOrder
     yearType?: SortOrder
     year?: SortOrder

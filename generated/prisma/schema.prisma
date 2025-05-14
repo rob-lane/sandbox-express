@@ -11,10 +11,13 @@ generator client {
 model Commodity {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  attribute String
+  attrib    String
   name      String
+  units     String
   type      String
   yearType  String
   year      Int
   value     Int
+
+  @@map("commodities")
 }

@@ -6,19 +6,12 @@ block content
     ul
       for error in errors
         li= error.msg
-  form(action=".", method="POST")
+  form(action="/upload", method="POST", enctype="multipart/form-data")
     label(for="name") Name:
     input(
-      type="text"
-      id="name"
-      name="name"
-    )
-
-    label(for="email") Email:
-    input(
-      type="email"
-      id="email"
-      name="email"
+      type="file"
+      id="file"
+      name="ProjectionFile"
     )
 
     input(type="submit" value="Submit")
