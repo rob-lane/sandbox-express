@@ -45,12 +45,33 @@ router.post('/upload', upload.single('ProjectionFile'), function(req: Request, r
 router.get('/histogram', async (req: Request, res: Response, next: NextFunction) => {
     // sum commodity by name
     const groupCommoditiesByName = await prisma.commodity.groupBy({
-        by: ['name'],
+        by: ['name', 'year'],
+        _sum: {
+            value: true
+        }
+    });
+    const groupCommoditiesByType = await prisma.commodity.groupBy({
+        by: ['type', 'year'],
+        _sum: {
+            value: true
+        }
+    });
+    const groupCommoditiesByUnit = await prisma.commodity.groupBy({
+        by: ['units', 'year'],
+        _sum: {
+            value: true
+        }
+    });
+    const groupCommoditiesByYearType = await prisma.commodity.groupBy({
+        by: ['yearType', 'year'],
         _sum: {
             value: true
         }
     });
     res.render(JSON.stringify(groupCommoditiesByName));
+    res.render(JSON.stringify(groupCommoditiesByType));
+    res.render(JSON.stringify(groupCommoditiesByUnit));
+    res.render(JSON.stringify(groupCommoditiesByYearType));
     next();    
 });
 
