@@ -6,7 +6,8 @@ const os = require('os');
 const { body, validationResult } = require('express-validator');
 import { Request, Response, NextFunction} from 'express';
 import WidgetsController from '../controllers/widgetsController';
-import { loadProjections } from '../utils/csv-parser';
+import { clearProjections, loadProjections } from '../utils/csv-parser';
+import { prisma } from '../db/connection';
 
 const storage = multer.diskStorage({
     destination: function (req: Request, file: Express.Multer.File, cb: Function) {
@@ -20,7 +21,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage});
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.render('form', { title: 'Registration Form' });
+    res.render('home', { title: 'Express' });
+    next();
+});
+
+router.get('/upload', (req: Request, res: Response, next: NextFunction) => {
+    res.render('form', { title: 'Import Data' });
     next();
 });
 
@@ -29,9 +35,23 @@ router.get('/widgets', WidgetsController.getAllWidgets);
 router.post('/upload', upload.single('ProjectionFile'), function(req: Request, res: Response, next: NextFunction) {
     const file = req.file;
     if (file) { 
+        clearProjections();
         loadProjections(file.path)
     }
+    res.redirect('/histogram');
     next();
+});
+
+router.get('/histogram', async (req: Request, res: Response, next: NextFunction) => {
+    // sum commodity by name
+    const groupCommoditiesByName = await prisma.commodity.groupBy({
+        by: ['name'],
+        _sum: {
+            value: true
+        }
+    });
+    res.render(JSON.stringify(groupCommoditiesByName));
+    next();    
 });
 
 router.post('/', 

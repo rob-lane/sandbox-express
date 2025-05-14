@@ -2,17 +2,18 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const path = require('path');
 import { error } from 'console';
-import { PrismaClient } from '../generated/prisma/client';
 import { parse } from 'csv-parse';
 import { delimiter } from 'path';
 import { off } from 'process';
+import { prisma } from '../db/connection';
 
 const projectionsData = path.join(__dirname, '..', 'dummy', 'projections.csv');
-const prisma = new PrismaClient(
-    {
-        log: ['query', 'info', 'warn', 'error'],
-    }
-);
+
+export async function clearProjections() { 
+    const result = await prisma.commodity.deleteMany({});
+    console.log('Deleted all projections:', result);
+    return result;
+}
 
 export function loadProjections(csvfile: string) { 
     const fileStream = fs.createReadStream(csvfile)
