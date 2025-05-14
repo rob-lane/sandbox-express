@@ -11,7 +11,6 @@ generator client {
 model Commodity {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  attrib    String
   name      String
   units     String
   type      String

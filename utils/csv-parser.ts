@@ -8,30 +8,27 @@ import { delimiter } from 'path';
 import { off } from 'process';
 
 const projectionsData = path.join(__dirname, '..', 'dummy', 'projections.csv');
-const prisma = new PrismaClient();
-
-const parseCsv = parse({
-    delimiter   : ',',
-    columns     : true,
-});
+const prisma = new PrismaClient(
+    {
+        log: ['query', 'info', 'warn', 'error'],
+    }
+);
 
 export function loadProjections(csvfile: string) { 
-    const fileStream = fs.createReadStream(csvfile);
-    fileStream.pipe(parseCsv);
-
-    parseCsv.on('data', (row) => {
-        prisma.commodity.create({
+    const fileStream = fs.createReadStream(csvfile)
+    fileStream.pipe(parse({delimiter: ',', columns: true})).on('data', async (row: { Commodity: any; CommodityType: any; Units: any; YearType: any; Year: any; Value: any; }) => {
+        console.log('row:', row);
+        const result = await prisma.commodity.create({
             data: { 
-                attrib: row.Attrib,
                 name: row.Commodity,
                 type: row.CommodityType,
                 units: row.Units,
                 yearType: row.YearType,
-                year: row.Year,
-                value: row.Value
+                year: parseInt(row.Year.split('/')[0]),
+                value: parseInt(row.Value)
             }
         })
+    }).on('error', (error: any) => {
+        console.error('Error parsing CSV file:', error);
     });
-
-    parseCsv.end();
 }
